@@ -11,6 +11,8 @@
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "https://ajax.googleapis.com/",
+    "identity",
+    "https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=D3S27VI266Y3FPZGBMAFWGC6HVBLCCZDEVJQTDRCFFSKR6Z4NP"
   ]
 }
