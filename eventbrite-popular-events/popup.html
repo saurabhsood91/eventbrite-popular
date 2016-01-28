@@ -53,9 +53,12 @@
           <td>Status</td>
         </thead>
         <tbody ng-repeat="event in ctrl.eventData.events">
-          <td>{{$index}}</td>
+          <td>{{$index + 1}}</td>
           <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a></td>
-          <td>{{event.start.local}}</td>
+          <td>Date:&nbsp;{{event.start.local.split("T")[0]}}
+            <br />
+            Time: &nbsp;{{event.start.local.split("T")[1]}}
+          </td>
           <td>{{event.status}}</td>
         </tbody>
       </table>
