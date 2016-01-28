@@ -10,6 +10,7 @@ angular.module('eventbrite', [])
 .controller('MainController', ['EventbriteAPIService', function(EventbriteAPIService){
   var self = this;
   self.locationQuery = '';
+  self.hasData = false;
   var initialize = function() {
     // See if you can store token in local storage
     // Else retrieve through OAuth flow
@@ -37,7 +38,8 @@ angular.module('eventbrite', [])
     // Get list of Popular events
     EventbriteAPIService.getPopularEvents(self.locationQuery, self.token, function(data) {
       // TODO validate the data
-      self.events = data;
+      self.eventData = data;
+      self.hasData = true;
     });
   };
   initialize();

@@ -44,6 +44,21 @@
           </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
+      <br /><br />
+      <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
+        <thead>
+          <td>#</td>
+          <td>Event Name</td>
+          <td>Start Date</td>
+          <td>Status</td>
+        </thead>
+        <tbody ng-repeat="event in ctrl.eventData.events">
+          <td>{{$index}}</td>
+          <td>{{event.name.text}}</td>
+          <td>{{event.start.local}}</td>
+          <td>{{event.status}}</td>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
