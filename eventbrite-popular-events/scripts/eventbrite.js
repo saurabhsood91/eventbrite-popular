@@ -49,9 +49,6 @@ angular.module('eventbrite', ['angularSpinner'])
         // get the time attribute
         var event = self.eventData.events[i];
         event.isOnComingWeekend = false;
-        // var date_time = event.start.local.split("T");
-        // var dp = date_time[0].split("-");
-        // var tp = date_time[1].split(":");
         var new_date = new Date(event.start.utc);
         console.log(new_date);
         // Add it to the data object

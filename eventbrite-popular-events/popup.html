@@ -57,7 +57,8 @@
         </thead>
         <tbody ng-repeat="event in ctrl.eventData.events">
           <td>{{$index + 1}}</td>
-          <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a></td>
+          <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a> &nbsp;
+          <span class="label label-success" ng-show="event.isOnComingWeekend">Coming Weekend</span></td>
           <td>Date:&nbsp;{{event.start.local.split("T")[0]}}
             <br />
             Time: &nbsp;{{event.start.local.split("T")[1]}}
@@ -66,7 +67,7 @@
         </tbody>
       </table>
     </div>
-    <div class="container footer">      
+    <div class="container footer">
     </div>
   </body>
 </html>
