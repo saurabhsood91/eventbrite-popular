@@ -38,9 +38,9 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Enter Location">
+          <input type="text" ng-model="ctrl.locationQuery" class="form-control" placeholder="Enter Location">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Find Events</button>
+            <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button">Find Events</button>
           </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->

@@ -7,8 +7,9 @@
 //   });
 // });
 angular.module('eventbrite', [])
-.controller('MainController', function(){
+.controller('MainController', ['EventbriteAPIService', function(EventbriteAPIService){
   var self = this;
+  self.locationQuery = '';
   var initialize = function() {
     // See if you can store token in local storage
     // Else retrieve through OAuth flow
@@ -33,4 +34,12 @@ angular.module('eventbrite', [])
     });
   };
   initialize();
-});
+}])
+.service('EventbriteAPIService', ['$http', function(){
+  var getPopularEvents = function(place, token) {
+    // Logic goes here
+  };
+  return {
+    getPopularEvents: getPopularEvents
+  }
+}]);
