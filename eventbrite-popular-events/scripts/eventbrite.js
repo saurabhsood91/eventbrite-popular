@@ -47,10 +47,13 @@ angular.module('eventbrite', [])
 .service('EventbriteAPIService', ['$http', function($http){
   var getPopularEvents = function(location, token, callback) {
     // Logic goes here
-    var url = 'https://www.eventbriteapi.com/v3/events/search?token=' + token;
+    var url = "https://www.eventbriteapi.com/v3/events/search";
     $http.get(url, {
-      'popular': true,
-      'location.address': location
+      params: {
+        'token': token,
+        'popular': true,
+        'venue.city': location
+      }
     })
     .success(function(data){
       console.log(data);
