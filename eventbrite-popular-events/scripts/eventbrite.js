@@ -6,11 +6,12 @@
 //     alert(redirect_url);
 //   });
 // });
-angular.module('eventbrite', [])
+angular.module('eventbrite', ['angularSpinner'])
 .controller('MainController', ['EventbriteAPIService', function(EventbriteAPIService){
   var self = this;
   self.locationQuery = '';
   self.hasData = false;
+  self.showSpinner = false;
   var initialize = function() {
     // See if you can store token in local storage
     // Else retrieve through OAuth flow
@@ -35,11 +36,14 @@ angular.module('eventbrite', [])
     });
   };
   self.getPopularEvents = function() {
+    // Show Spinner
+    self.showSpinner = true;
     // Get list of Popular events
     EventbriteAPIService.getPopularEvents(self.locationQuery, self.token, function(data) {
       // TODO validate the data
       self.eventData = data;
       self.hasData = true;
+      self.showSpinner = false;
     });
   };
   initialize();

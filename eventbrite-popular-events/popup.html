@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
      <!-- <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script> -->
      <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+     <script type="text/javascript" src="bower_components/spin.js/spin.min.js"></script>
+     <script type="text/javascript" src="bower_components/angular-spinner/angular-spinner.min.js"></script>
     <script src="scripts/eventbrite.js"></script>
   </head>
   <body ng-controller="MainController as ctrl">
@@ -44,6 +46,7 @@
       </div><!-- /input-group -->
       <br /><br />
     </div>
+    <span us-spinner spinner-on="ctrl.showSpinner"></span>
     <div class="scroll-table">
       <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
         <thead>
