@@ -35,30 +35,33 @@
         </div>
       </div>
     </nav>
-    <div class="row">
-      <div class="col-lg-6">
+    <div class="container">
+      <div class="row">
         <div class="input-group">
           <input type="text" ng-model="ctrl.locationQuery" class="form-control" placeholder="Enter Location">
           <span class="input-group-btn">
             <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents();">Find Events</button>
           </span>
         </div><!-- /input-group -->
-      </div><!-- /.col-lg-6 -->
-      <br /><br />
-      <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
-        <thead>
-          <td>#</td>
-          <td>Event Name</td>
-          <td>Start Date</td>
-          <td>Status</td>
-        </thead>
-        <tbody ng-repeat="event in ctrl.eventData.events">
-          <td>{{$index}}</td>
-          <td>{{event.name.text}}</td>
-          <td>{{event.start.local}}</td>
-          <td>{{event.status}}</td>
-        </tbody>
-      </table>
+        <br /><br />
+        <div class="scroll-table">
+          <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
+            <thead>
+              <td>#</td>
+              <td>Event Name</td>
+              <td>Start Date</td>
+              <td>Status</td>
+            </thead>
+            <tbody ng-repeat="event in ctrl.eventData.events">
+              <td>{{$index}}</td>
+              <td>{{event.name.text}}</td>
+              <td>{{event.start.local}}</td>
+              <td>{{event.status}}</td>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    <div id="footer" style="overflow:hidden; position:absolute; bottom:0; left:0; height:50px"></div>    
   </body>
 </html>

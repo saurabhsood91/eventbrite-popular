@@ -2,3 +2,12 @@ body {
   min-height: 500px;
   min-width: 800px;
 }
+
+.scroll-table {
+  /*overflow: scroll;
+  height: 80%;*/
+  overflow:auto;
+  position:absolute;
+  top:50px;
+  bottom:50px;
+}
