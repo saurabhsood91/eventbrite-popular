@@ -54,7 +54,7 @@
             </thead>
             <tbody ng-repeat="event in ctrl.eventData.events">
               <td>{{$index}}</td>
-              <td>{{event.name.text}}</td>
+              <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a></td>
               <td>{{event.start.local}}</td>
               <td>{{event.status}}</td>
             </tbody>
@@ -62,6 +62,6 @@
         </div>
       </div>
     </div>
-    <div id="footer" style="overflow:hidden; position:absolute; bottom:0; left:0; height:50px"></div>    
+    <div id="footer" style="overflow:hidden; position:absolute; bottom:0; left:0; height:50px"></div>
   </body>
 </html>
