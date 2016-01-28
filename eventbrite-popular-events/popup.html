@@ -35,32 +35,30 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-      <div class="row">
-        <div class="input-group">
-          <input type="text" ng-model="ctrl.locationQuery" class="form-control" placeholder="Enter Location">
-          <span class="input-group-btn">
-            <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents();">Find Events</button>
-          </span>
-        </div><!-- /input-group -->
-        <br /><br />
-        <div class="scroll-table">
-          <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
-            <thead>
-              <td>#</td>
-              <td>Event Name</td>
-              <td>Start Date</td>
-              <td>Status</td>
-            </thead>
-            <tbody ng-repeat="event in ctrl.eventData.events">
-              <td>{{$index}}</td>
-              <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a></td>
-              <td>{{event.start.local}}</td>
-              <td>{{event.status}}</td>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="row loc">
+      <div class="input-group">
+        <input type="text" ng-model="ctrl.locationQuery" class="form-control" placeholder="Enter Location">
+        <span class="input-group-btn">
+          <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents();">Find Events</button>
+        </span>
+      </div><!-- /input-group -->
+      <br /><br />
+    </div>
+    <div class="scroll-table">
+      <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
+        <thead>
+          <td>#</td>
+          <td>Event Name</td>
+          <td>Start Date</td>
+          <td>Status</td>
+        </thead>
+        <tbody ng-repeat="event in ctrl.eventData.events">
+          <td>{{$index}}</td>
+          <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a></td>
+          <td>{{event.start.local}}</td>
+          <td>{{event.status}}</td>
+        </tbody>
+      </table>
     </div>
     <div id="footer" style="overflow:hidden; position:absolute; bottom:0; left:0; height:50px"></div>
   </body>
