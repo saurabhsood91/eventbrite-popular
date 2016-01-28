@@ -33,11 +33,31 @@ angular.module('eventbrite', [])
       }
     });
   };
+  self.getPopularEvents = function() {
+    // Get list of Popular events
+    EventbriteAPIService.getPopularEvents(self.locationQuery, self.token, function(data) {
+      // TODO validate the data
+      self.events = data;
+    });
+  };
   initialize();
 }])
-.service('EventbriteAPIService', ['$http', function(){
-  var getPopularEvents = function(place, token) {
+.service('EventbriteAPIService', ['$http', function($http){
+  var getPopularEvents = function(location, token, callback) {
     // Logic goes here
+    var url = 'https://www.eventbriteapi.com/v3/events/search?token=' + token;
+    $http.get(url, {
+      'popular': true,
+      'location.address': location
+    })
+    .success(function(data){
+      console.log(data);
+      // Pass data back to the controller
+      callback(data);
+    })
+    .error(function(err) {
+      console.log(err);
+    });
   };
   return {
     getPopularEvents: getPopularEvents
