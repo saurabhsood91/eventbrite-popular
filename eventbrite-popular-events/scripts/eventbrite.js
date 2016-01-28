@@ -44,6 +44,33 @@ angular.module('eventbrite', ['angularSpinner'])
       self.eventData = data;
       self.hasData = true;
       self.showSpinner = false;
+
+      for(var i = 0; i < self.eventData.events.length; i++) {
+        // get the time attribute
+        var event = self.eventData.events[i];
+        event.isOnComingWeekend = false;
+        // var date_time = event.start.local.split("T");
+        // var dp = date_time[0].split("-");
+        // var tp = date_time[1].split(":");
+        var new_date = new Date(event.start.utc);
+        console.log(new_date);
+        // Add it to the data object
+        var event_time = new_date.getTime();
+        // Get current time
+        var time_now = new Date().getTime();
+        // Get difference of the times
+        var diff = event_time - time_now;
+        // Can do actual weekend calculation here
+        if(diff > 0) {
+          // if within the next 7 days and on a saturday and sunday
+          var next_days = 7 * 24 * 3600 * 1000;
+          var day = new_date.getDay();
+          if(diff < next_days && (day === 0 || day == 6)) {
+            event.isOnComingWeekend = true;
+          }
+        }
+      }
+
     });
   };
   initialize();
@@ -56,7 +83,8 @@ angular.module('eventbrite', ['angularSpinner'])
       params: {
         'token': token,
         'popular': true,
-        'venue.city': location
+        'venue.city': location,
+        'sort_by': 'date'
       }
     })
     .success(function(data){
