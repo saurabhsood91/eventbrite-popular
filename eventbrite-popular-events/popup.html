@@ -41,7 +41,7 @@
       <div class="input-group">
         <input type="text" ng-model="ctrl.locationQuery" class="form-control" placeholder="Enter Location">
         <span class="input-group-btn">
-          <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents();">Find Events</button>
+          <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents(1);">Find Events</button>
         </span>
       </div><!-- /input-group -->
       <br /><br />
@@ -68,6 +68,13 @@
       </table>
     </div>
     <div class="container footer">
+      <nav>
+        <ul class="pagination">
+          <li ng-repeat="i in ctrl.pages">
+            <a href="#" ng-click="ctrl.getPopularEvents(i)">{{i}}</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </body>
 </html>

@@ -9,6 +9,7 @@
 angular.module('eventbrite', ['angularSpinner'])
 .controller('MainController', ['EventbriteAPIService', function(EventbriteAPIService){
   var self = this;
+  self.currentPage = 0;
   self.locationQuery = '';
   self.hasData = false;
   self.showSpinner = false;
@@ -31,17 +32,27 @@ angular.module('eventbrite', ['angularSpinner'])
         });
       } else {
         // Set token on scope
-        self.token = objects.token
+        self.token = objects.token;
       }
     });
   };
-  self.getPopularEvents = function() {
+
+  // self.changePage = function() {
+  //   self.getPopularEvents(self.currentPage);
+  // };
+
+  self.getPopularEvents = function(page) {
     // Show Spinner
     self.showSpinner = true;
     // Get list of Popular events
-    EventbriteAPIService.getPopularEvents(self.locationQuery, self.token, function(data) {
+    EventbriteAPIService.getPopularEvents(self.locationQuery, self.token, page, function(data) {
       // TODO validate the data
       self.eventData = data;
+      // Store the page count
+      self.pages = [];
+      for(var i = 1; i <= data.pagination.page_count; i++) {
+        self.pages.push(i);
+      }
       self.hasData = true;
       self.showSpinner = false;
 
@@ -50,7 +61,6 @@ angular.module('eventbrite', ['angularSpinner'])
         var event = self.eventData.events[i];
         event.isOnComingWeekend = false;
         var new_date = new Date(event.start.utc);
-        console.log(new_date);
         // Add it to the data object
         var event_time = new_date.getTime();
         // Get current time
@@ -73,7 +83,7 @@ angular.module('eventbrite', ['angularSpinner'])
   initialize();
 }])
 .service('EventbriteAPIService', ['$http', function($http){
-  var getPopularEvents = function(location, token, callback) {
+  var getPopularEvents = function(location, token, page, callback) {
     // Logic goes here
     var url = "https://www.eventbriteapi.com/v3/events/search";
     $http.get(url, {
@@ -81,7 +91,8 @@ angular.module('eventbrite', ['angularSpinner'])
         'token': token,
         'popular': true,
         'venue.city': location,
-        'sort_by': 'date'
+        'sort_by': 'date',
+        'page': page
       }
     })
     .success(function(data){
