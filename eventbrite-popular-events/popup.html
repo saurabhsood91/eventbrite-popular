@@ -4,7 +4,7 @@
  "browser_action" field in manifest.json contains the "default_popup" key with
  value "popup.html".
  -->
-<html>
+<html ng-app="eventbrite">
   <head>
     <style>
       body {
@@ -20,17 +20,11 @@
       }
     </style>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
-     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+     <!-- <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script> -->
+     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script src="scripts/eventbrite.js"></script>
   </head>
-  <body>
-    <button type="button" name="Authenticate" id="btnAuth">Click</button>
-    <img id="image-result" hidden>
+  <body ng-controller="MainController as ctrl">
+    <!-- Main UI -->
   </body>
 </html>
