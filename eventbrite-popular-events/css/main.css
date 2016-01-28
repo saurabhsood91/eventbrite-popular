@@ -17,3 +17,13 @@ body {
   top:120px;
   bottom:50px;
 }
+
+.footer {
+  background-color: #f5f5f5;
+  width: 100%;
+  overflow:hidden;
+  position:absolute;
+  bottom:0;
+  left:0;
+  height:50px
+}
