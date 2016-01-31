@@ -6,19 +6,6 @@
  -->
 <html ng-app="eventbrite">
   <head>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
      <!-- <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script> -->
@@ -43,31 +30,29 @@
         <span class="input-group-btn">
           <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents(1);">Find Events</button>
         </span>
-      </div><!-- /input-group -->
+      </div>
       <br /><br />
     </div>
     <span us-spinner spinner-on="ctrl.showSpinner"></span>
     <div class="scroll-table">
       <table class="table table-bordered table-hover" ng-show="ctrl.hasData">
         <thead>
-          <td>#</td>
-          <td>Event Name</td>
-          <td>Start Date</td>
-          <td>Status</td>
+          <th>Event Name</th>
+          <th>Start Date</th>
+          <th>Status</th>
         </thead>
         <tbody ng-repeat="event in ctrl.eventData.events">
-          <td>{{$index + 1}}</td>
-          <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a> &nbsp;
+          <td><a href="{{event.url}}" target="_blank">{{event.name.text}}</a> <br />
           <span class="label label-success" ng-show="event.isOnComingWeekend">Coming Weekend</span></td>
-          <td>Date:&nbsp;{{event.start.local.split("T")[0]}}
+          <td>{{event.start.local.split("T")[0]}}
             <br />
-            Time: &nbsp;{{event.start.local.split("T")[1]}}
+            {{event.start.local.split("T")[1]}}
           </td>
           <td>{{event.status}}</td>
         </tbody>
       </table>
     </div>
-    <div class="container footer">
+    <div class="container footer" ng-show="ctrl.hasData">
       <nav>
         <ul class="pagination">
           <li ng-repeat="i in ctrl.pages">

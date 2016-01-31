@@ -1,6 +1,6 @@
 body {
   min-height: 500px;
-  min-width: 500px;
+  min-width: 700px;
 }
 
 .loc {
@@ -26,4 +26,9 @@ body {
   bottom:0;
   left:0;
   height:50px
+}
+
+.pagination {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
