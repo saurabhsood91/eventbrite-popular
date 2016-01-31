@@ -4,11 +4,10 @@
   "name": "Popular Events by Location",
   "description": "This extension shows popular Eventbrite events by location",
   "version": "1.0",
-  "app": {
-  "background": {
-    "scripts": ["scripts/main.js"]
-  }
-},
+  "browser_action": {
+    "default_icon": "images/eventbrite.png",
+    "default_popup": "popup.html"
+  },
   "permissions": [
     "https://ajax.googleapis.com/",
     "identity",

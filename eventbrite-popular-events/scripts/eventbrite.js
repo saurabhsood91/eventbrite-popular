@@ -90,7 +90,7 @@ angular.module('eventbrite', ['angularSpinner'])
       params: {
         'token': token,
         'popular': true,
-        'venue.city': location,
+        'location.address': location,
         'sort_by': 'date',
         'page': page
       }
