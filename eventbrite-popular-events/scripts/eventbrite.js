@@ -1,11 +1,3 @@
-// $(function(){
-//   chrome.identity.launchWebAuthFlow({
-//     'url': 'https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=TTNJP3XC3TXKXN625J',
-//     'interactive': true
-//   },function(redirect_url) {
-//     alert(redirect_url);
-//   });
-// });
 angular.module('eventbrite', ['angularSpinner'])
 .controller('MainController', ['EventbriteAPIService', function(EventbriteAPIService){
   var self = this;
@@ -36,10 +28,6 @@ angular.module('eventbrite', ['angularSpinner'])
       }
     });
   };
-
-  // self.changePage = function() {
-  //   self.getPopularEvents(self.currentPage);
-  // };
 
   self.getPopularEvents = function(page) {
     // Show Spinner

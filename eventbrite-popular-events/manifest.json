@@ -13,7 +13,6 @@
     "identity",
     "storage",
     "geolocation",
-    "fullscreen",
     "https://www.eventbriteapi.com/v3/*",
     "https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=D3S27VI266Y3FPZGBMAFWGC6HVBLCCZDEVJQTDRCFFSKR6Z4NP"
   ]
