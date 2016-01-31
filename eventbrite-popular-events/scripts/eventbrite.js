@@ -36,11 +36,22 @@ angular.module('eventbrite', ['angularSpinner'])
       geolocation.getCurrentPosition(function(position){
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
+        self.coords = position.coords;
         self.showSpinner = true;
-        EventbriteAPIService.getPopularEventsByCoords(lat, long, 0, self.token, self.showData)
+        EventbriteAPIService.getPopularEventsByCoords(lat, long, 0, self.token, self.showData);
       }, function(err){
         console.log(err);
       });
+    }
+  };
+
+  self.getEvents = function(page) {
+    if(self.isLocationRadio) {
+      // Get next page of current location
+      self.showSpinner = true;
+      EventbriteAPIService.getPopularEventsByCoords(self.coords.latitude, self.coords.longitude, page, self.token, self.showData);
+    } else {
+      self.getPopularEvents(page);
     }
   };
 
