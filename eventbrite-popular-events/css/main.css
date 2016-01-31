@@ -8,13 +8,17 @@ body {
   margin-right: 10px !important;
 }
 
+.geo {
+  margin: 10px;
+}
+
 .scroll-table {
   /*overflow: scroll;
   height: 80%;*/
   overflow:auto;
   width: 100%;
   position:absolute;
-  top:120px;
+  top:150px;
   bottom:50px;
 }
 

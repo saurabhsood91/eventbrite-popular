@@ -26,11 +26,15 @@
     </nav>
     <div class="row loc">
       <div class="input-group">
-        <input type="text" ng-model="ctrl.locationQuery" class="form-control" placeholder="Enter Location">
+        <input type="text" ng-model="ctrl.locationQuery" ng-disabled="ctrl.isLocationRadio" class="form-control" placeholder="Enter Location">
         <span class="input-group-btn">
           <button class="btn btn-default" ng-disabled="ctrl.locationQuery.length === 0" type="button" ng-click="ctrl.getPopularEvents(1);">Find Events</button>
         </span>
       </div>
+    </div>
+    <div class="geo">
+      Use My Location:
+      <input type="checkbox" ng-model="ctrl.isLocationRadio" ng-change="ctrl.getLocationEvents()" />
       <br /><br />
     </div>
     <span us-spinner spinner-on="ctrl.showSpinner"></span>
