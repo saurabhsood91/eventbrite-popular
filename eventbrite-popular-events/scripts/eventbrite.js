@@ -37,7 +37,7 @@ angular.module('eventbrite', ['angularSpinner'])
       geolocation.getCurrentPosition(function(position){
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
-        var miles = "10mi";
+        var miles = self.selectedDist;
         self.coords = position.coords;
         self.showSpinner = true;
         EventbriteAPIService.getPopularEventsByCoords(lat, long, miles, 0, self.token, self.showData);
@@ -48,8 +48,10 @@ angular.module('eventbrite', ['angularSpinner'])
   };
 
   self.changeDist = function() {
-    self.showSpinner = true;
-    EventbriteAPIService.getPopularEventsByCoords(self.coords.latitude, self.coords.longitude, self.selectedDist, 0, self.token, self.showData);
+    if(self.isLocationRadio) {
+      self.showSpinner = true;
+      EventbriteAPIService.getPopularEventsByCoords(self.coords.latitude, self.coords.longitude, self.selectedDist, 0, self.token, self.showData);
+    }
   }
 
   self.getEvents = function(page) {
