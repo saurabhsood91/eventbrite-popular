@@ -33,8 +33,17 @@
       </div>
     </div>
     <div class="geo">
-      Use My Location:
-      <input type="checkbox" ng-model="ctrl.isLocationRadio" ng-change="ctrl.getLocationEvents()" />
+          Use My Location:
+          <input type="checkbox" ng-model="ctrl.isLocationRadio" ng-change="ctrl.getLocationEvents()" />
+          &nbsp;&nbsp;&nbsp;&nbsp;Events within
+          <select name="select" ng-model="ctrl.selectedDist" ng-change="ctrl.changeDist()">
+            <option>10mi</option>
+            <option>20mi</option>
+            <option>30mi</option>
+          </select>
+      </div>
+
+
       <br /><br />
     </div>
     <span us-spinner spinner-on="ctrl.showSpinner"></span>

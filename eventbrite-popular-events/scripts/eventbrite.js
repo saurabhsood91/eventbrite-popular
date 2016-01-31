@@ -5,6 +5,7 @@ angular.module('eventbrite', ['angularSpinner'])
   self.locationQuery = '';
   self.hasData = false;
   self.showSpinner = false;
+  self.selectedDist = "10mi";
   // self.isLocationRadio = false;
   var initialize = function() {
     // See if you can store token in local storage
@@ -36,20 +37,26 @@ angular.module('eventbrite', ['angularSpinner'])
       geolocation.getCurrentPosition(function(position){
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
+        var miles = "10mi";
         self.coords = position.coords;
         self.showSpinner = true;
-        EventbriteAPIService.getPopularEventsByCoords(lat, long, 0, self.token, self.showData);
+        EventbriteAPIService.getPopularEventsByCoords(lat, long, miles, 0, self.token, self.showData);
       }, function(err){
         console.log(err);
       });
     }
   };
 
+  self.changeDist = function() {
+    self.showSpinner = true;
+    EventbriteAPIService.getPopularEventsByCoords(self.coords.latitude, self.coords.longitude, self.selectedDist, 0, self.token, self.showData);
+  }
+
   self.getEvents = function(page) {
     if(self.isLocationRadio) {
       // Get next page of current location
       self.showSpinner = true;
-      EventbriteAPIService.getPopularEventsByCoords(self.coords.latitude, self.coords.longitude, page, self.token, self.showData);
+      EventbriteAPIService.getPopularEventsByCoords(self.coords.latitude, self.coords.longitude, self.selectedDist, page, self.token, self.showData);
     } else {
       self.getPopularEvents(page);
     }
@@ -120,7 +127,7 @@ angular.module('eventbrite', ['angularSpinner'])
     });
   };
 
-  var getPopularEventsByCoords = function(lat, lng, page, token, callback) {
+  var getPopularEventsByCoords = function(lat, lng, miles, page, token, callback) {
     // Logic goes here
     var url = "https://www.eventbriteapi.com/v3/events/search";
     $http.get(url, {
@@ -129,6 +136,7 @@ angular.module('eventbrite', ['angularSpinner'])
         'popular': true,
         'location.latitude': lat,
         'location.longitude': lng,
+        'location.within': miles,
         'sort_by': 'date',
         'page': page
       }
