@@ -8,6 +8,9 @@
     "default_icon": "images/eventbrite.png",
     "default_popup": "popup.html"
   },
+  "icons": {
+     "128": "images/eventbrite.png"
+  },
   "permissions": [
     "https://ajax.googleapis.com/",
     "identity",
