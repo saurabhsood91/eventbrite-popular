@@ -20,3 +20,9 @@ A Chrome app to display the popular events on Eventbrite by location. Enter the 
 * Angular.js (v1.4.8)
 * angular-spinner
 * Bootstrap (v3.3.6)
+
+### Screenshots:
+![Screenshot 1](screenshot.png)
+
+
+![Screenshot 2](screenshot-1.png)
