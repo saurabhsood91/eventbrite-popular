@@ -1,5 +1,10 @@
+/*
+Angular service to make HTTP calls to the Eventbrite API
+*/
+
 angular.module('eventbrite')
 .service('EventbriteAPIService', ['$http', function($http){
+  // Hits the Events API of Eventbrite when a location address is passed as a parameter
   var getPopularEvents = function(location, token, page, callback) {
     // Logic goes here
     var url = "https://www.eventbriteapi.com/v3/events/search";
@@ -22,6 +27,7 @@ angular.module('eventbrite')
     });
   };
 
+  // Hits the Events API of Eventbrite when lat and long are passed as parameters
   var getPopularEventsByCoords = function(lat, lng, miles, page, token, callback) {
     // Logic goes here
     var url = "https://www.eventbriteapi.com/v3/events/search";

@@ -8,6 +8,7 @@ A Chrome app to display the popular events on Eventbrite by location. Enter the 
 * HTML5 geolocation support. Can filter the location from 10, 20, 30 miles
 * Pagination support
 * Shows the events in the coming weekend with the label 'Coming Weekend'
+* Storing OAuth token in HTML5 local storage, in order to avoid repeatedly acquiring the token
 
 ### Installation:
 
@@ -23,6 +24,5 @@ A Chrome app to display the popular events on Eventbrite by location. Enter the 
 
 ### Screenshots:
 ![Screenshot 1](screenshot.png)
-
 
 ![Screenshot 2](screenshot-1.png)

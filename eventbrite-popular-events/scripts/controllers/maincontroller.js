@@ -1,3 +1,10 @@
+/*
+MainController
+Handles the interaction with the UI
+Depends on angularSpinner module
+Uses the EventbriteAPIService to make calls to the EventbriteAPI
+*/
+
 angular.module('eventbrite', ['angularSpinner'])
 .controller('MainController', ['EventbriteAPIService', function(EventbriteAPIService){
   var self = this;
@@ -6,7 +13,9 @@ angular.module('eventbrite', ['angularSpinner'])
   self.hasData = false;
   self.showSpinner = false;
   self.selectedDist = "10mi";
-  // self.isLocationRadio = false;
+
+  // Bootstraps the controller
+  // Handles getting the OAuth token from either local storage or from Eventbrite API
   var initialize = function() {
     // See if you can store token in local storage
     // Else retrieve through OAuth flow
@@ -31,6 +40,8 @@ angular.module('eventbrite', ['angularSpinner'])
     });
   };
 
+  // Runs when the checkbox for current location is checked
+  // Uses HTML5 geolocation to get the current location and uses it to make API calls
   self.getLocationEvents = function() {
     if(self.isLocationRadio) {
       var geolocation = navigator.geolocation;
@@ -47,6 +58,7 @@ angular.module('eventbrite', ['angularSpinner'])
     }
   };
 
+  // Runs when the threshold distance for events is selected, provided that the Geolocation is being used
   self.changeDist = function() {
     if(self.isLocationRadio) {
       self.showSpinner = true;
@@ -54,6 +66,7 @@ angular.module('eventbrite', ['angularSpinner'])
     }
   }
 
+  // Used to get a particular page in the list of events
   self.getEvents = function(page) {
     if(self.isLocationRadio) {
       // Get next page of current location
@@ -64,6 +77,7 @@ angular.module('eventbrite', ['angularSpinner'])
     }
   };
 
+  // Callback function to set the data and show it in the table
   self.showData = function(data) {
     // TODO validate the data
     self.eventData = data;
@@ -89,6 +103,7 @@ angular.module('eventbrite', ['angularSpinner'])
       // Can do actual weekend calculation here
       if(diff > 0) {
         // if within the next 7 days and on a saturday and sunday
+        // To mark as coming weekend
         var next_days = 7 * 24 * 3600 * 1000;
         var day = new_date.getDay();
         if(diff < next_days && (day === 0 || day == 6)) {
@@ -98,6 +113,7 @@ angular.module('eventbrite', ['angularSpinner'])
     }
   };
 
+  // Runs when a query is searched
   self.getPopularEvents = function(page) {
     // Show Spinner
     self.showSpinner = true;
