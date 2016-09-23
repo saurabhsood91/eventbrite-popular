@@ -3,7 +3,7 @@
 
   "name": "Popular Events by Location",
   "description": "This extension shows popular Eventbrite events by location",
-  "version": "1.0",
+  "version": "1.2",
   "browser_action": {
     "default_icon": "images/eventbrite.png",
     "default_popup": "popup.html"

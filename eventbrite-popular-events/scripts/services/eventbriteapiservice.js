@@ -11,7 +11,6 @@ angular.module('eventbrite')
     $http.get(url, {
       params: {
         'token': token,
-        'popular': true,
         'location.address': location,
         'sort_by': 'date',
         'page': page
@@ -34,7 +33,6 @@ angular.module('eventbrite')
     $http.get(url, {
       params: {
         'token': token,
-        'popular': true,
         'location.latitude': lat,
         'location.longitude': lng,
         'location.within': miles,
