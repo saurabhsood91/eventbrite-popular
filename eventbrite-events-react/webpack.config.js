@@ -4,6 +4,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: 'body'
 });
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -18,5 +19,21 @@ module.exports = {
         filename: 'index_bundle.js',
         path: __dirname + '/dist'
     },
-    plugins: [HtmlWebpackPluginConfig]
+    plugins: [
+        HtmlWebpackPluginConfig,
+        new CopyWebpackPlugin([
+            {
+                from: 'images/',
+                to: __dirname + '/dist/images/'
+            },
+            {
+                from: 'static/',
+                to: __dirname + '/dist/static'
+            },
+            {
+                from: 'manifest.json',
+                to: __dirname + '/dist/manifest.json'
+            }
+        ])
+    ]
 }
