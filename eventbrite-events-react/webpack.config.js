@@ -33,6 +33,10 @@ module.exports = {
             {
                 from: 'manifest.json',
                 to: __dirname + '/dist/manifest.json'
+            },
+            {
+                from: 'bower_components',
+                to: __dirname + '/dist/bower_components'
             }
         ])
     ]
