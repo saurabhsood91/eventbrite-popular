@@ -49,3 +49,10 @@ body {
   margin-top: 10px !important;
   margin-bottom: 10px !important;
 }
+
+#search-box {
+    margin-top: 20px;
+    float: right;
+    margin-right: 20px;
+    width: 300px;
+}
