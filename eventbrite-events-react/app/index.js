@@ -5,6 +5,18 @@ var SearchContainer = require('../containers/SearchContainer');
 var TableContainer = require('../containers/TableContainer');
 
 var MainContainer = React.createClass({
+    getInitialData: function() {
+        // Get initial data
+        var self = this;
+        $.getJSON('https://www.eventbriteapi.com/v3/events/search', {
+            'token': self.token,
+            'sort_by': 'date'
+        })
+        .done(function(data){
+            console.log(data);
+            // TODO Set the data
+        });
+    },
     componentWillMount: function() {
         var self = this;
         chrome.storage.local.get('token', function(objects){
@@ -19,11 +31,13 @@ var MainContainer = React.createClass({
                 'token': self.token
               }, function(){
                 console.log('Token Saved');
+                self.getInitialData();
               });
             });
           } else {
             // Set token on scope
             self.token = objects.token;
+            self.getInitialData();
           }
         });
     },
