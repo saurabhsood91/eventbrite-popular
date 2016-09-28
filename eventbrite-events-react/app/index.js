@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var SearchContainer = require('../containers/SearchContainer');
+var TableContainer = require('../containers/TableContainer');
 
 var MainContainer = React.createClass({
     render: function() {
@@ -23,6 +24,7 @@ var MainContainer = React.createClass({
                     </div>
                   </div>
                 </nav>
+                <TableContainer />
             </div>
         )
     }
