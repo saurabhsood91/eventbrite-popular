@@ -6,7 +6,7 @@ var EventComponent = React.createClass({
             <tr>
                 <td>{this.props.eventName}</td>
                 <td>{this.props.eventDate}</td>
-                <td>{this.props.eventPrice}</td>
+                <td>{this.props.eventTime}</td>
             </tr>
         );
     }

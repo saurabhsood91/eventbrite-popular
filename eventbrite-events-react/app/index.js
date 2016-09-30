@@ -5,8 +5,12 @@ var SearchContainer = require('../containers/SearchContainer');
 var TableContainer = require('../containers/TableContainer');
 
 var MainContainer = React.createClass({
-    getInitialData: function() {
-        // Get initial data
+    getInitialState: function() {
+        return {
+            events: []
+        }
+    },
+    getData: function() {
         var self = this;
         $.getJSON('https://www.eventbriteapi.com/v3/events/search', {
             'token': self.token,
@@ -15,9 +19,12 @@ var MainContainer = React.createClass({
         .done(function(data){
             console.log(data);
             // TODO Set the data
+            self.setState({
+                events: data.events
+            });
         });
     },
-    componentWillMount: function() {
+    componentDidMount: function() {
         var self = this;
         chrome.storage.local.get('token', function(objects){
           if(objects.token === undefined) {
@@ -31,13 +38,13 @@ var MainContainer = React.createClass({
                 'token': self.token
               }, function(){
                 console.log('Token Saved');
-                self.getInitialData();
+                self.getData();
               });
             });
           } else {
             // Set token on scope
             self.token = objects.token;
-            self.getInitialData();
+            self.getData();
           }
         });
     },
@@ -60,7 +67,7 @@ var MainContainer = React.createClass({
                     </div>
                   </div>
                 </nav>
-                <TableContainer />
+                <TableContainer events={this.state.events}/>
             </div>
         )
     }

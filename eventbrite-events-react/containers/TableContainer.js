@@ -4,7 +4,7 @@ var TableComponent = require('../components/TableComponent');
 var TableContainer = React.createClass({
     render: function() {
         return (
-            <TableComponent />
+            <TableComponent events={this.props.events}/>
         )
     }
 });

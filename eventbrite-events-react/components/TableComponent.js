@@ -4,29 +4,17 @@ var EventComponent = require('../components/EventComponent');
 var TableComponent = React.createClass({
     getInitialState: function() {
         return {
-            events: [
-                {
-                    name: 'Some Sample Event',
-                    date: '8/16/2016',
-                    price: '$150',
-                    id: 1
-                },
-                {
-                    name: 'Some Sample Event 2',
-                    date: '9/16/2016',
-                    price: 'Free',
-                    id: 2
-                }
-            ]
+            events: []
         };
     },
-    eachEvent: function(event, i) {
+    eachEvent: function(e, i) {
+        var dateParts = e.start.local.split('T');
         return (
             <EventComponent
-                key={event.id}
-                eventName={event.name}
-                eventDate={event.date}
-                eventPrice={event.price}
+                key={i}
+                eventName={e.name.html}
+                eventDate={dateParts[0]}
+                eventTime={dateParts[1]}
             />
         );
     },
@@ -38,11 +26,11 @@ var TableComponent = React.createClass({
                         <tr>
                             <th>Event Name</th>
                             <th>Date</th>
-                            <th>Price</th>
+                            <th>Time</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.events.map(this.eachEvent)}
+                        {this.props.events.map(this.eachEvent)}
                     </tbody>
                 </table>
             </div>
