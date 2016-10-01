@@ -15,6 +15,7 @@ var TableComponent = React.createClass({
                 eventName={e.name.html}
                 eventDate={dateParts[0]}
                 eventTime={dateParts[1]}
+                eventURL={e.url}
             />
         );
     },

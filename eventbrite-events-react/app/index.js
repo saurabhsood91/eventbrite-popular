@@ -22,6 +22,7 @@ var MainContainer = React.createClass({
             'location.within': '50mi'
         })
         .done(function(data){
+            console.log(data.events);
             self.setState({
                 events: data.events
             });
