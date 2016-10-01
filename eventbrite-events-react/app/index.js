@@ -10,11 +10,13 @@ var MainContainer = React.createClass({
             events: []
         }
     },
-    getData: function() {
+    getData: function(eventName) {
         var self = this;
+
         $.getJSON('https://www.eventbriteapi.com/v3/events/search', {
             'token': self.token,
-            'sort_by': 'date'
+            'sort_by': 'date',
+            'q': eventName
         })
         .done(function(data){
             console.log(data);
@@ -23,6 +25,9 @@ var MainContainer = React.createClass({
                 events: data.events
             });
         });
+    },
+    searchEvents: function(eventName) {
+        this.getData(eventName);
     },
     componentDidMount: function() {
         var self = this;
@@ -61,7 +66,7 @@ var MainContainer = React.createClass({
                                 </a>
                             </div>
                             <div className="col-md-5">
-                                <SearchContainer />
+                                <SearchContainer searchCallback={this.searchEvents}/>
                             </div>
                         </div>
                     </div>

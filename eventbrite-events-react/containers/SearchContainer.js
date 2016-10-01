@@ -4,7 +4,7 @@ var SearchBox = require('../components/SearchBox');
 var SearchContainer = React.createClass({
     render: function() {
         return (
-            <SearchBox />
+            <SearchBox searchCallback={this.props.searchCallback}/>
         )
     }
 });
