@@ -61,7 +61,7 @@ var MainContainer = React.createClass({
             chrome.storage.local.get('token', function(objects){
               if(objects.token === undefined) {
                 chrome.identity.launchWebAuthFlow({
-                  'url': 'https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=V52WWQLQ73NY5OUXUP',
+                  'url': 'https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=TTNJP3XC3TXKXN625J',
                   'interactive': true
                 },function(redirect_url) {
                   self.token = redirect_url.split("&")[1].split("=")[1];
