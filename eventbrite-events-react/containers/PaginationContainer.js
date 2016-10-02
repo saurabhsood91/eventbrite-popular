@@ -8,7 +8,7 @@ var PaginationContainer = React.createClass({
     render: function() {
         return (
             <div className="container footer">
-                <nav>
+                <nav className="row">
                     <PreviousPageComponent changePageCallback={this.props.changePageCallback} page={this.props.page}/>
                     <PageDisplayComponent page={this.props.page}/>
                     <NextPageComponent changePageCallback={this.props.changePageCallback} page={this.props.page} numberOfPages={this.props.numberOfPages}/>

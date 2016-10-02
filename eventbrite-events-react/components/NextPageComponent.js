@@ -10,7 +10,7 @@ var NextPageComponent = React.createClass({
     },
     render: function() {
         return (
-            <a href="#" onClick={this.gotoNextPage}>&gt;</a>
+            <a className={this.props.page === this.props.numberOfPages ? "col-md-3 disabled-link" : "col-md-3"} href="#" onClick={this.gotoNextPage}>Next</a>
         );
     }
 });
