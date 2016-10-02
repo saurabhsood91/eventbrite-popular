@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Loader = require('react-loader');
 
 var SearchContainer = require('../containers/SearchContainer');
 var TableContainer = require('../containers/TableContainer');
@@ -10,9 +11,9 @@ var MainContainer = React.createClass({
         return {
             events: [],
             page: 1,
-            hasResults: false,
             numberOfPages: 0,
-            currentEvent: ''
+            currentEvent: '',
+            loading: false
         }
     },
     changePageCallback: function(pageNumber) {
@@ -27,6 +28,9 @@ var MainContainer = React.createClass({
         if(page) {
             pageNumber = page;
         }
+        this.setState({
+            loading: true
+        });
         console.log(pageNumber);
         $.getJSON('https://www.eventbriteapi.com/v3/events/search', {
             'token': self.token,
@@ -40,9 +44,9 @@ var MainContainer = React.createClass({
         .done(function(data){
             self.setState({
                 events: data.events,
-                hasResults: true,
                 numberOfPages: data.pagination.page_count,
-                currentEvent: eventName
+                currentEvent: eventName,
+                loading: false
             });
         });
     },
@@ -97,8 +101,9 @@ var MainContainer = React.createClass({
                     </div>
                   </div>
                 </nav>
+                <Loader loaded={!this.state.loading} />
                 <TableContainer events={this.state.events}/>
-                {this.state.hasResults ? <PaginationContainer changePageCallback={this.changePageCallback} page={this.state.page} numberOfPages={this.state.numberOfPages}/> : null}
+                <PaginationContainer changePageCallback={this.changePageCallback} page={this.state.page} numberOfPages={this.state.numberOfPages}/>
             </div>
         )
     }
