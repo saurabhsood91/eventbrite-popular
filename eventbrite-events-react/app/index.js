@@ -3,28 +3,46 @@ var ReactDOM = require('react-dom');
 
 var SearchContainer = require('../containers/SearchContainer');
 var TableContainer = require('../containers/TableContainer');
+var PaginationContainer = require('../containers/PaginationContainer');
 
 var MainContainer = React.createClass({
     getInitialState: function() {
         return {
-            events: []
+            events: [],
+            page: 1,
+            hasResults: false,
+            numberOfPages: 0,
+            currentEvent: ''
         }
     },
-    getData: function(eventName) {
+    changePageCallback: function(pageNumber) {
+        this.setState({
+            page: pageNumber
+        });
+        this.getData(this.state.currentEvent, pageNumber);
+    },
+    getData: function(eventName, page) {
         var self = this;
-
+        var pageNumber = 1;
+        if(page) {
+            pageNumber = page;
+        }
+        console.log(pageNumber);
         $.getJSON('https://www.eventbriteapi.com/v3/events/search', {
             'token': self.token,
             'sort_by': 'date',
             'q': eventName,
             'location.latitude': this.state.location.latitude,
             'location.longitude': this.state.location.longitude,
-            'location.within': '50mi'
+            'location.within': '50mi',
+            'page': pageNumber
         })
         .done(function(data){
-            console.log(data.events);
             self.setState({
-                events: data.events
+                events: data.events,
+                hasResults: true,
+                numberOfPages: data.pagination.page_count,
+                currentEvent: eventName
             });
         });
     },
@@ -80,6 +98,7 @@ var MainContainer = React.createClass({
                   </div>
                 </nav>
                 <TableContainer events={this.state.events}/>
+                {this.state.hasResults ? <PaginationContainer changePageCallback={this.changePageCallback} page={this.state.page} numberOfPages={this.state.numberOfPages}/> : null}
             </div>
         )
     }
