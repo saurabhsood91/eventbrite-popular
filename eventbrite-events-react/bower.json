@@ -1,0 +1,22 @@
+{
+  "name": "eventbrite-events-react",
+  "homepage": "https://github.com/saurabhsood91/eventbrite-popular",
+  "authors": [
+    "saurabhsood91 <saurabhsood91@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
