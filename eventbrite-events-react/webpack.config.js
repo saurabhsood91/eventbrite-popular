@@ -5,6 +5,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     inject: 'body'
 });
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
     entry: [
@@ -35,9 +36,14 @@ module.exports = {
                 to: __dirname + '/dist/manifest.json'
             },
             {
-                from: 'bower_components',
-                to: __dirname + '/dist/bower_components'
+                from: 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                to: __dirname + '/dist/bower_components/bootstrap/dist/css/bootstrap.min.css'
+            },
+            {
+                from: 'bower_components/jquery/dist/jquery.min.js',
+                to: __dirname + '/dist/bower_components/jquery/dist/jquery.min.js'
             }
-        ])
+        ]),
+        new webpack.optimize.UglifyJsPlugin({minimize: true})
     ]
 }
